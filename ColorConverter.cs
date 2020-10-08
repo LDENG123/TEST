@@ -35,7 +35,7 @@ namespace WpfApp4
             {
                 return new SolidColorBrush(Colors.Red);
             }
-            if (Array[2] && str == "LMT+")
+            if (Array[2] && str == "LMT11+")
             {
                 return new SolidColorBrush(Colors.Red);
             }
