@@ -1,0 +1,60 @@
+﻿<Window x:Class="WpfApp4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4" 
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:ColorConverter x:Key="cvtDate"/>
+        <local:StringConvert x:Key="strDate"/>
+        <local:VisibleConvert x:Key="Visible"/>
+        <local:IMultiValueConverterClass x:Key="IMultiValueConverterc"/>
+        <ObjectDataProvider x:Key="OOP"  ObjectType="{x:Type local:dataProvider}" MethodName="ADD" >
+            <ObjectDataProvider.MethodParameters>
+
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Window.DataContext>
+        <local:Class1></local:Class1>
+    </Window.DataContext>
+    <Grid>
+        <TextBox HorizontalAlignment="Left" Name="test" Margin="361,160,0,0" Text="{Binding Str}" Background="{Binding Str, Converter={StaticResource cvtDate}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="449,244,0,0" VerticalAlignment="Top" Background="{Binding ElementName=test }" Height="77" Width="89"/>
+        <TextBox HorizontalAlignment="Left" Margin="361,204,0,0" Text="{Binding Str}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.517,0.748"/>
+        <Ellipse HorizontalAlignment="Left" Height="72" Margin="41,168,0,0" Stroke="Black" VerticalAlignment="Top" Width="76" Fill="{Binding Str, Converter={StaticResource cvtDate},ConverterParameter=RDY}"/>
+        <Ellipse HorizontalAlignment="Left" Height="72" Margin="48,92,0,0" Stroke="Black" VerticalAlignment="Top" Width="69" Fill="{Binding Str, Converter={StaticResource cvtDate},ConverterParameter=ALM}"/>
+        <Ellipse HorizontalAlignment="Left" Height="80" Margin="38,253,0,0" Stroke="Black" VerticalAlignment="Top" Width="79" Fill="{Binding Str, Converter={StaticResource cvtDate},ConverterParameter=LMT+}"/>
+        <Ellipse HorizontalAlignment="Left" Height="80" Margin="43,338,0,0" Stroke="Black" VerticalAlignment="Top" Width="79" Fill="{Binding Str, Converter={StaticResource cvtDate}, ConverterParameter=LMT-}"/>
+        <Ellipse HorizontalAlignment="Left" Height="72" Margin="162,168,0,0" Stroke="Black" VerticalAlignment="Top" Width="76" Fill="{Binding Str, Converter={StaticResource cvtDate}, ConverterParameter=ORG}"/>
+        <Ellipse HorizontalAlignment="Left" Height="72" Margin="169,92,0,0" Stroke="Black" VerticalAlignment="Top" Width="69" Fill="{Binding Str, Converter={StaticResource cvtDate}, ConverterParameter=DIR}"/>
+        <Ellipse HorizontalAlignment="Left" Height="80" Margin="159,253,0,0" Stroke="Black" VerticalAlignment="Top" Width="79" Fill="{Binding Str, Converter={StaticResource cvtDate}, ConverterParameter=EMG}"/>
+        <Ellipse HorizontalAlignment="Left" Height="80" Margin="164,338,0,0" Stroke="Black" VerticalAlignment="Top" Width="79" Fill="{Binding Str, Converter={StaticResource cvtDate}, ConverterParameter=PCS}"/>
+        <Ellipse HorizontalAlignment="Left" Height="72" Margin="48,11,0,0" Stroke="Black" VerticalAlignment="Top" Width="69" Fill="{Binding Str, Converter={StaticResource cvtDate}, ConverterParameter=INP}"/>
+        <Ellipse HorizontalAlignment="Left" Height="72" Margin="169,11,0,0" Stroke="Black" VerticalAlignment="Top" Width="69" Fill="{Binding Str, Converter={StaticResource cvtDate}, ConverterParameter=SVON}"/>
+        <!--<TextBox HorizontalAlignment="Left" Name="ki" Margin="296,18,0,0" Text="{Binding Str1, Converter={StaticResource strDate}, ConverterParameter=1}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="kl" Margin="296,79,0,0" Text="{Binding Str1, Converter={StaticResource strDate}, ConverterParameter=2}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="296,119,0,0" Text="{Binding Str1, Converter={StaticResource strDate}, ConverterParameter=2}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>-->
+        <TextBox HorizontalAlignment="Left" Name="key"  Margin="634,66,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="value" Margin="634,119,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="634,169,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+            <TextBox.Text>
+                <MultiBinding  Converter="{StaticResource IMultiValueConverterc}">
+                    <Binding ElementName="key" Path="Text"/>
+                    <Binding ElementName="value" Path="Text"/>
+                </MultiBinding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="634,244,0,0" Text="{Binding Str2, Converter={StaticResource strDate}}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="634,282,0,0" Text="{Binding Str2}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Visibility="{Binding Str, Converter={StaticResource Visible}, ConverterParameter=1}" Margin="285,36,0,0" VerticalAlignment="Top" Height="39" Width="66"/>
+        <Button Content="Button" HorizontalAlignment="Center"  Visibility="{Binding Str, Converter={StaticResource Visible}, ConverterParameter=2}" Margin="0,36,0,0" VerticalAlignment="Top" Height="36" Width="60"/>
+        <Button Content="Button" HorizontalAlignment="Left"  Visibility="{Binding Str, Converter={StaticResource Visible}, ConverterParameter=3}" Margin="469,36,0,0" VerticalAlignment="Top" Height="36" Width="57"/>
+        <Button Content="Button" HorizontalAlignment="Left"  Visibility="{Binding Str, Converter={StaticResource Visible}, ConverterParameter=4}" Margin="563,36,0,0" VerticalAlignment="Top" Height="36" Width="50"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="498,378,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="613,378,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+
+    </Grid>
+</Window>
